@@ -44,6 +44,7 @@ class LoginCPT extends React.Component{
 					console.log(that.state.result);
 					if(that.state.result){
 						localStorage.setItem("userDetail", that.state.result);
+						localStorage.setItem("userName", that.state.result.name);
 						var router = that._reactInternalInstance._context.router;
 						router.replace("/");
 					}else{
@@ -58,12 +59,12 @@ class LoginCPT extends React.Component{
 			});
 			process.push();
 		}else{
-			that.setState({
+				that.setState({
 							loginTip:"用户或密码未填写",
 							isAction:true,
 							loginResult:false
-						});
-			}		 
+				});
+			}	
 	}
 	
 	pageJump(){
@@ -75,6 +76,11 @@ class LoginCPT extends React.Component{
 		}else{
 
 		}
+	}
+
+	gotoRegister(){
+		var router = this._reactInternalInstance._context.router;
+					router.replace("/api/register");
 	}
 
 	render(){
@@ -90,37 +96,33 @@ class LoginCPT extends React.Component{
             	   </Modal>
         }());
 		return(	
-			<Container>
-				 
+			<Container style={{padding:'20px'}}>
+				 <p className="app_title">法制绵阳</p>
 		        <Form>
 			        <fieldset className="am-form-set">
-					      {'\u00a0'}{'\u00a0'}  
 					       <Input 
 						       placeholder="用户名" 
-						       style={{padding:'10px'}}  
+						       id="border_username" 
 						       icon="user" 
 						       ref="userName"
 					       />
-						  {'\u00a0'}{'\u00a0'}	
 						  <Input 
 							  type="password" 
 							  placeholder="密码"  
-							  style={{padding:'10px'}} 
+							  id="border_psw" 
 							  ref="userPsw"
 							  icon="lock" 
 						  />		         
 			        </fieldset>
-			        	{'\u00a0'}
 			        <ModalTrigger modal={modal} open={this.state.isAction}>
-   							<Input 
-	   							type="submit" 
-	   							value="登录" 
-	   							amStyle="primary" 
-	   							block  
-	   							onClick={this.login.bind(this)} 
-   							/>
+   							<Button 
+	   							amStyle="primary" block 
+	   							onClick={this.login.bind(this)}>
+	   							登录
+   							</Button>
   						</ModalTrigger>
 			    </Form>
+			    <p className="register" onClick={this.gotoRegister.bind(this)}>还没有账号？快注册一个吧！</p>
 			</Container>
 			);
 	}

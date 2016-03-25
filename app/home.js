@@ -1,5 +1,5 @@
 import React from 'react';
-import { Slider,Header } from 'amazeui-react';
+import { Slider,Header,AvgGrid,Button,Icon} from 'amazeui-react';
 import NavBarCPT from './api/NavBarCPT.js';
 import Headerbar from './api/Headerbar.js';
 import Process  from './api/process.js';
@@ -36,7 +36,7 @@ class Home extends React.Component{
 			    </Slider.Item>
 			);
 		});
-		var titleStorage=localStorage.getItem('userDetail')||'未登录';
+		var titleStorage=localStorage.getItem('userName')||'未登录';
 		return(
 			 <main className="amr-main">
 			 	<Headerbar index = '首页' link="/" prev={[{link:'/login',title:titleStorage}]}
@@ -44,6 +44,32 @@ class Home extends React.Component{
 				<Slider theme="c2">
 		    		{lubo}
 		  		</Slider>
+		  		 <AvgGrid sm={2} >
+		  		 	<li id="question"> <Icon icon="qq" /><p>快速提问</p></li>
+				 	<li id="question1"> <Icon icon="qq" /><p>专家咨询</p></li>
+				 	
+				 	<li>专家咨询</li>
+				 	<li>电话热线</li>
+				 	<li>边看边听</li>
+				 	<li>法律服务</li>
+				 	<li>找寻服务</li>
+				 	<li>对案预约</li>
+				 	<li>法务管家</li>
+				  </AvgGrid>
+				  <table>
+				  	<tr>
+				  		<td>专家咨询</td>
+				  		<td>专家咨询</td>
+				  		<td>专家咨询</td>
+				  		<td>专家咨询</td>
+				  	</tr>
+				  	<tr>
+				  		<td>专家咨询</td>
+				  		<td>专家咨询</td>
+				  		<td>专家咨询</td>
+				  		<td>专家咨询</td>
+				  	</tr>
+				  </table>
 		 		<NavBarCPT  index="首页"/>
 			</main>
 		);

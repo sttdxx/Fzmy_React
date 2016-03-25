@@ -14,28 +14,16 @@ class RegisterCPT extends React.Component{
 			userConfirm:'',
 			email:'',
 			phone:'',
-			word1:'',
-			word2:'',
-			word3:'',
 			tips:'',
 			registerResult:false,
-			validation1:'warning',
-			validation2:'warning',
-			validation3:'warning',
-			validation4:'warning',
-			validation5:'warning'
+			checkUserNameResult:'',
+			checkUserPswResult:'',
+			checkEmailResult:'',
+			checkPhoneResult:''
 		}
 	}
 
-	getTip1(){
-		this.setState({word1:"必须包含字母和数字,长度为6-12位"});
-	}
-	getTip2(){
-		this.setState({word2:"必须包含字母和数字,长度为8-14位"});
-	}
-	getTip3(){
-		this.setState({word3:"请再次输入密码,确保与上次一致"});
-	}
+	
 	
 	regExp(data){
 		var regExp = /(([0-9a-zA-Z]*)([0-9]+)([0-9a-zA-Z]*)([a-zA-Z]+)([0-9a-zA-Z]*))|(([0-9a-zA-Z]*)([a-zA-Z]+)([0-9a-zA-Z]*)([0-9]+)([0-9a-zA-Z]*))/;
@@ -75,166 +63,101 @@ class RegisterCPT extends React.Component{
 				that.setState({
 					result: data
 				});
-				console.log(that.state.result);
-				if(that.state.result){
-					that.setState({
-						word1:"",
-						validation1:"success"
-					});
-				}else{
-					that.setState({
-						word1:"用户名已存在！",
-						validation1:"error"
-					});			
-				}
 			} 
 		});
 		process.push();
-		}else if(length==0){
-			this.setState({
-				word1:"用户名不能为空！",
-				validation1:"warning"
-			});
-		}else{
-			this.setState({
-				word1:"用户名格式错误！",
-				validation1:"error"
-			});		
-		}		 
+		} 
 	}
 
 	checkUserPsw(){
 		let userPsw = this.refs.psw.getValue();
 		this.setState({userPsw:userPsw});
-		console.log(userPsw);
 		let length = userPsw.length;
 		let that = this;
 		let flag = this.regExp(userPsw);
 		if(length <14 && length >7 && flag){
-			this.setState({
-				word2:"",
-				validation2:"success"
-			});
-		}else if(length<=0){
-			this.setState({
-				word2:"密码不能为空！",
-				validation2:"warning"
-			});
-		}else{
-			this.setState({
-				word2:"密码格式错误！",
-				validation2:"error"
-			});
+			return true;
+		}else {
+			return false;
 		}
 		
 	}
 
-	confirmUserPsw(){
-		let userConfirm = this.refs.comPsw.getValue();
-		this.setState({userConfirm:userConfirm});
-		let userPsw = this.state.userPsw;
-		if(userPsw==userConfirm&&userPsw){
-
-			this.setState({
-				word3:"",
-				validation3:"success"
-			});
-		}else{
-			this.setState({
-				word3:"两次密码不一致！",
-				validation3:"error"
-			});
-		}
-
-	}
-
-	checkEmail(){
+		checkEmail(){
 		let email = this.refs.email.getValue();
 		this.setState({email:email});
-		console.log(email);
-		console.log(email.length);
 		let flag = this.regExpEmail(email);
-		if(flag){
-			this.setState({
-				word4:"",
-				validation4:"success"
-			});
-		}else{
-			this.setState({
-				word4:"邮箱格式错误！",
-				validation4:"error"
-			});
-		}
+		return flag?true:false;
 	}
 
-	checkPhone(event){
-		this.setState({phone:event.target.value});
-		let phone = event.target.value;
-		console.log(phone);
-		console.log(this.state.phone.length);
+	checkPhone(){
+		let phone =this.refs.phone.getValue();
+		this.setState({phone:phone});
 		let flag = this.regExpPhone(phone);
-		if(flag){
-			this.setState({
-				word5:"",
-				validation5:"success"
-			});
-		}else{
-			this.setState({
-				word5:"电话号码格式错误！",
-				validation5:"error"
-			});
-		}
+		return flag?true:false;
 	}
 
 	register(){
-		let userName = this.state.userName;
-		let psw = this.state.userPsw;
-		let email = this.state.email;
-		let phone = this.state.phone;
-		let that = this;
-		if(userName&&psw&&phone&&email){
-			let process = new Process({
-			"url":"http://www.myflfw.com/law/App/User/register.action",
-			options:{
-				"name":"list",
-				"username":userName,
-				"psw":psw,
-				"telePhone":phone,
-				"email":email,
-				"callback":"234",
-			},
-			headers:{},
-			callback:function(data){
-				console.log(data);
-				data = JSON.parse(data.slice(0,-1).slice("list".length+1));
-				that.setState({
-					result: data
-				});
-				console.log(that.state.result);
-				if(that.state.result=="ok"){
-				 		that.setState({
-				 			tips:"注册成功！",
-				 			registerResult:true,
-				 		});	
-				 		
-				}
-				else if(that.state.result=="isName"){
-						that.setState({
-							tips:"注册失败，用户名已存在！",
-							registerResult:false,
-						});	
-				}else if(that.state.result=="no"){
+		var checkPhoneResult = this.checkPhone();
+		var checkUserPswResult = this.checkUserPsw();
+		var checkEmailResult = this.checkEmail();
+		let userName = this.refs.userName.getValue()
+		let psw = this.refs.psw.getValue();
+		let phone = this.refs.phone.getValue();
+		let email = this.refs.email.getValue();
+		let that = this;	
+			if(userName&&psw&&phone&&email){
+				if(checkPhoneResult&&checkEmailResult&&checkUserPswResult){
+				let process = new Process({
+				"url":"http://www.myflfw.com/law/App/User/register.action",
+				options:{
+					"name":"list",
+					"username":userName,
+					"psw":psw,
+					"telePhone":phone,
+					"email":email,
+					"callback":"234",
+				},
+				headers:{},
+				callback:function(data){
+					console.log(data);
+					data = JSON.parse(data.slice(0,-1).slice("list".length+1));
 					that.setState({
-							tips:"注册失败，请重试！",
-							registerResult:false,
-						});
-				}
-			} 
-		});
-		process.push();
+						result: data
+					});
+					console.log(that.state.result);
+					if(that.state.result=="ok"){
+					 		that.setState({
+					 			tips:"注册成功！",
+					 			registerResult:true,
+					 		});	
+					 		
+					}
+					else if(that.state.result=="isName"){
+							that.setState({
+								tips:"注册失败，用户名已存在！",
+								registerResult:false,
+							});	
+					}else if(that.state.result=="no"){
+						that.setState({
+								tips:"注册失败，请重试！",
+								registerResult:false,
+							});
+					}
+				} 
+			});
+			process.push();
+		}	
+		else if(!checkPhoneResult){
+			this.setState({tips:"电话号码格式错误！"});
+		}else if(!checkEmailResult){
+			this.setState({tips:"邮箱格式错误！"});
+		}else if(!checkUserPswResult){			
+			this.setState({tips:"密码格式错误！"});
+		}
 	}else{
 		that.setState({
-			tips:"注册失败，请重试！",
+			tips:"注册失败，还有未填项！",
 			registerResult:false,
 			});	
 		}
@@ -245,7 +168,7 @@ class RegisterCPT extends React.Component{
 		let that = this;
 		if(regResult){
 			var router = that._reactInternalInstance._context.router;
-						router.replace("/api/login");
+						router.replace("/");
 		}
 	}
 
@@ -258,78 +181,60 @@ render(){
 		let _this = this;
 		var modal =  (function(){
             return <Modal 
-		            	type="alert" 
-		            	title="提示" 
-		            	onClick={_this.pageJump.bind(_this)}
-	           		 	>
-	           			{_this.state.tips}
-            		</Modal>
-        		}());
+	            type="alert" 
+	            title="提示" 
+	            onClick={_this.pageJump.bind(_this)}
+            >
+           		{_this.state.tips}
+            </Modal>
+        }());
 	return (
-				<Container >
-
+				<Container style={{padding:'20px'}}>
+					 <p className="app_title">法制绵阳</p>
 					<Form horizontal>						
 						<Input
 							 type="text" 
-							 placeholder="请输入用户名" 
+							 placeholder="用户名" 
 							 ref="userName"
-							 validation={this.state.validation1}
-							 onFocus={this.getTip1.bind(this)} 
-							 onBlur={this.checkUserName.bind(this)} 
-							 hasFeedback
+							 id="reg_username"							
+							 icon="user"
 						 />													
-						<small>{this.state.word1}</small>	
-						<Input 
-							type="password"  
-							placeholder="请输入密码" 
-							ref="psw"
-							validation={this.state.validation2}
-							onFocus={this.getTip2.bind(this)} 
-							onBlur={this.checkUserPsw.bind(this)} 
-							hasFeedback
-						 />													
-						<small>{this.state.word2}</small>
-						<Input 
-							type="password"  
-							placeholder="确认密码" 
-							ref="comPsw"
-							validation={this.state.validation3}
-							onFocus={this.getTip3.bind(this)} 
-							onBlur={this.confirmUserPsw.bind(this)} 
-							hasFeedback
-						/>													
-						<small>{this.state.word3}</small>
-						<Input 
-							type="email"  
-							placeholder="请输入邮箱" 
-							ref="email"
-							validation={this.state.validation4}
-							onBlur={this.checkEmail.bind(this)}
-							hasFeedback 
-						/>													
-						<small>{this.state.word4}</small>
 						<Input 
 							type="number"  
-							placeholder="请电话号码" 
-							value={this.state.phone}  
+							placeholder="电话号码"  
 							ref="phone"
-							validation={this.state.validation5}
-							onChange={this.checkPhone.bind(this)}
-							hasFeedback  
+							id="reg_phone"
+							 icon="phone"
+						 />	
+																							
+						<Input 
+							type="email"  
+							placeholder="邮箱" 
+							ref="email"
+							id="reg_email"
+							icon="envelope"
+						/>	
+
+						 <Input 
+							type="password"  
+							placeholder="密码,字母与数字组合不少于8位" 
+							ref="psw"
+							id="reg_psw"													 
+							icon="lock"
 						 />													
-						<small>{this.state.word5}</small>
+
 						<ModalTrigger modal={modal} open={this.state.isAction}>
-   							<Input 
-	   							type="submit" 
-	   							value="注册" 
+   							<Button 
 	   							amStyle="primary" 
-	   							block  
-	   							onClick={this.register.bind(this)} 
-   							/>
+	   							block 
+	   							onClick={this.register.bind(this)}>
+	   							注册
+   							</Button>
   						</ModalTrigger>
 
 					</Form>
-					<Button amStyle="primary" radius onClick={this.goToLawReg.bind(this)}>法律服务人员注册点击这里</Button>
+					<p className="register" onClick={this.goToLawReg.bind(this)}>法律服务人员注册点击这里</p>
+
 				</Container>			
 			   );
 	}

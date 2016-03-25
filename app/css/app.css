@@ -19,3 +19,30 @@
 .am-slider-default .am-control-nav{
 	bottom:-2px;
 }
+#border_username,#border_psw ,#reg_phone,#reg_psw,#reg_username,#reg_email,#lawReg_username,#lawReg_psw,#lawReg_code{
+	padding:10px;
+	border:0;
+	border-bottom: 1px solid #ccc;
+	outline: none;
+	box-shadow: none;
+}
+.app_title{
+	font-size:30px;
+	font-family:cursive;
+	font-weight: 800;
+	color:#0e90d2;
+	text-align: center;
+}
+.register{
+	text-align: center;
+}
+#question{
+	background-color: blue;
+	height:80px;
+	border-radius: 5px;
+}
+#question1{
+	background-color: blue;
+	height:80px;
+	border-radius: 5px;
+}
