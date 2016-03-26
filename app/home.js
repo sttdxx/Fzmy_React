@@ -1,5 +1,5 @@
 import React from 'react';
-import { Slider,Header,AvgGrid,Button,Icon} from 'amazeui-react';
+import { Slider,Header,AvgGrid,Button,Icon,Grid,Col} from 'amazeui-react';
 import NavBarCPT from './api/NavBarCPT.js';
 import Headerbar from './api/Headerbar.js';
 import Process  from './api/process.js';
@@ -42,34 +42,20 @@ class Home extends React.Component{
 			 	<Headerbar index = '首页' link="/" prev={[{link:'/login',title:titleStorage}]}
 			 	 next={[{link:'#right-link', icon: 'bell'}]} />
 				<Slider theme="c2">
-		    		{lubo}
+		    			{lubo}
 		  		</Slider>
-		  		 <AvgGrid sm={2} >
-		  		 	<li id="question"> <Icon icon="qq" /><p>快速提问</p></li>
-				 	<li id="question1"> <Icon icon="qq" /><p>专家咨询</p></li>
-				 	
-				 	<li>专家咨询</li>
-				 	<li>电话热线</li>
-				 	<li>边看边听</li>
-				 	<li>法律服务</li>
-				 	<li>找寻服务</li>
-				 	<li>对案预约</li>
-				 	<li>法务管家</li>
-				  </AvgGrid>
-				  <table>
-				  	<tr>
-				  		<td>专家咨询</td>
-				  		<td>专家咨询</td>
-				  		<td>专家咨询</td>
-				  		<td>专家咨询</td>
-				  	</tr>
-				  	<tr>
-				  		<td>专家咨询</td>
-				  		<td>专家咨询</td>
-				  		<td>专家咨询</td>
-				  		<td>专家咨询</td>
-				  	</tr>
-				  </table>
+		  		 <Grid fixed className="doc-g" id="list">
+    				<Col  id="data1" sm={6}><Icon className="iconsize" icon="commenting" /><br /><span>快速提问</span></Col>
+    				<Col  id="data2" sm={6}><Icon className="iconsize" icon="graduation-cap" /><br /><span>专家咨询</span></Col>
+ 				 	<Col  id="data3" sm={6}><Icon className="iconsize" icon="fax" /><br /><span>电话热线</span></Col>
+    				<Col  id="data4" sm={6}><Icon className="iconsize" icon="eraser" /><br /><span>边看边听</span></Col>
+ 				 	<Col  id="data5" sm={6}><Icon className="iconsize" icon="heartbeat" /><br /><span>法律服务</span></Col>
+    				<Col  id="data6" sm={6}><Icon className="iconsize" icon="search" /><br /><span>找寻服务</span></Col>
+ 				 	<Col  id="data7" sm={6}><Icon className="iconsize" icon="object-group" /><br /><span>对案预约</span></Col>
+    				<Col  id="data8" sm={6}><Icon className="iconsize" icon="user-secret" /><br /><span>法务管家</span></Col>
+ 				 
+ 				 </Grid>
+				  
 		 		<NavBarCPT  index="首页"/>
 			</main>
 		);

@@ -1,3 +1,11 @@
+body{
+	padding-top:50px;
+}
+.am-header{
+	position: fixed !important;
+	top: 0;
+	z-index: 9999;
+}
 .am-slides{
 	width: 100%;
     overflow: hidden;
@@ -36,13 +44,38 @@
 .register{
 	text-align: center;
 }
-#question{
-	background-color: blue;
-	height:80px;
-	border-radius: 5px;
+#list{
+	width:100%;
+	border-collapse:separate;
+	text-align: center;
+	color:white;
 }
-#question1{
-	background-color: blue;
-	height:80px;
-	border-radius: 5px;
+.iconsize{
+	font-size:1.8em;
 }
+
+
+ [id^=data]{
+	height: 100px;
+}
+#list:nth-child(odd){
+	border-left: 10px solid #ccc;
+	border-bottom: 2px solid #ccc;
+}
+#list:nth-child(even){
+	border-right: 10px solid #ccc;
+	border-bottom: 2px solid #ccc;
+}
+#data1,#data8{
+	background-color: rgb(52, 85, 190);
+}
+#data2,#data7{
+	background-color:rgb(52, 190, 75);
+}
+#data3,#data6{
+	background-color:rgb(72, 13, 76);
+}
+#data4,#data5{
+	background-color:rgb(213, 94, 20);
+}
+
