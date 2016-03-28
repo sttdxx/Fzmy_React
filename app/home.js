@@ -3,6 +3,7 @@ import { Slider,Header,AvgGrid,Button,Icon,Grid,Col} from 'amazeui-react';
 import NavBarCPT from './api/NavBarCPT.js';
 import Headerbar from './api/Headerbar.js';
 import Process  from './api/process.js';
+import ThemeCPT from './api/ThemeCPT.js';
 class Home extends React.Component{
  	constructor(props){
 		super(props);
@@ -44,18 +45,7 @@ class Home extends React.Component{
 				<Slider theme="c2">
 		    			{lubo}
 		  		</Slider>
-		  		 <Grid fixed className="doc-g" id="list">
-    				<Col  id="data1" sm={6}><Icon className="iconsize" icon="commenting" /><br /><span>快速提问</span></Col>
-    				<Col  id="data2" sm={6}><Icon className="iconsize" icon="graduation-cap" /><br /><span>专家咨询</span></Col>
- 				 	<Col  id="data3" sm={6}><Icon className="iconsize" icon="fax" /><br /><span>电话热线</span></Col>
-    				<Col  id="data4" sm={6}><Icon className="iconsize" icon="eraser" /><br /><span>边看边听</span></Col>
- 				 	<Col  id="data5" sm={6}><Icon className="iconsize" icon="heartbeat" /><br /><span>法律服务</span></Col>
-    				<Col  id="data6" sm={6}><Icon className="iconsize" icon="search" /><br /><span>找寻服务</span></Col>
- 				 	<Col  id="data7" sm={6}><Icon className="iconsize" icon="object-group" /><br /><span>对案预约</span></Col>
-    				<Col  id="data8" sm={6}><Icon className="iconsize" icon="user-secret" /><br /><span>法务管家</span></Col>
- 				 
- 				 </Grid>
-				  
+    				<ThemeCPT />
 		 		<NavBarCPT  index="首页"/>
 			</main>
 		);

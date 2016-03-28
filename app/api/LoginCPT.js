@@ -122,8 +122,7 @@ class LoginCPT extends React.Component{
    							</Button>
   						</ModalTrigger>
 			    </Form>
-			    <p className="register" onClick={this.gotoRegister.bind(this)}>还没有账号？快注册一个吧！</p>
-			</Container>
+			  </Container>
 			);
 	}
 }

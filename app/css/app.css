@@ -1,10 +1,29 @@
-body{
-	padding-top:50px;
+html,body{
+	padding-top:7.2%;
+	height:100%;
+}
+@media screen and (max-height: 480px) {
+    html,body {
+        padding-top:6%;
+        padding-bottom:5%;
+    }#list{
+    	margin-top:7%;
+    	height: 58%;
+		text-align: center;
+		color:white;
+    }
+}
+#app{
+	height: 100%;
 }
 .am-header{
 	position: fixed !important;
 	top: 0;
 	z-index: 9999;
+	height: 8%;
+}
+.am-slider-c2{
+	height: 22%;
 }
 .am-slides{
 	width: 100%;
@@ -41,41 +60,43 @@ body{
 	color:#0e90d2;
 	text-align: center;
 }
+#app main{
+	height:100%;
+}
 .register{
 	text-align: center;
 }
 #list{
-	width:100%;
-	border-collapse:separate;
+	height: 70%;
 	text-align: center;
 	color:white;
 }
-.iconsize{
-	font-size:1.8em;
+#list div{
+	width: 50%;
+	height: 25%;
+	box-sizing:border-box;
 }
+.iconsize{
+	font-size:2em;
+}
+
 
 
  [id^=data]{
-	height: 100px;
+	height: 25%;
+	line-height: 80px;
 }
-#list:nth-child(odd){
-	border-left: 10px solid #ccc;
-	border-bottom: 2px solid #ccc;
-}
-#list:nth-child(even){
-	border-right: 10px solid #ccc;
-	border-bottom: 2px solid #ccc;
-}
+
 #data1,#data8{
-	background-color: rgb(52, 85, 190);
+	background-color:rgba(52, 85, 190,0.8);
 }
 #data2,#data7{
-	background-color:rgb(52, 190, 75);
+	background-color:rgba(52, 190, 75,0.8);
 }
 #data3,#data6{
-	background-color:rgb(72, 13, 76);
+	background-color:rgba(72, 13, 76,0.8);
 }
 #data4,#data5{
-	background-color:rgb(213, 94, 20);
+	background-color:rgba(213, 94, 20,0.8);
 }
 

@@ -233,8 +233,7 @@ render(){
   						</ModalTrigger>
 
 					</Form>
-					<p className="register" onClick={this.goToLawReg.bind(this)}>法律服务人员注册点击这里</p>
-
+					
 				</Container>			
 			   );
 	}
