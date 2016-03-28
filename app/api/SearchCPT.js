@@ -22,7 +22,6 @@ class SearchCPT extends React.Component{
 			"url":this.props.url,
 			options:{
 				"name":"dynamic_searchlist",
-
 				"search":search,
 				"callback":"234",
 			},
@@ -44,18 +43,19 @@ class SearchCPT extends React.Component{
 		return (
 				<Container >
 					<Grid className="doc-g">
-    					<Col sm={9}>
+    					<Col sm={10}>
 	    					<Input 
 								type="text"  
+								id="search"
 								placeholder="Search..."  
 								ref="myInput"   
 							/>
 						</Col>
-    					<Col sm={3}>
-	    					<Input 
-								type="submit" 
+    					<Col sm={2}>
+	    					<Icon 
+	    						id="searchButton"
 								onClick={this.submitAndClear.bind(this)}  
-								value="提交" 
+								icon="send-o"
 							/>
 						</Col>
   					</Grid>

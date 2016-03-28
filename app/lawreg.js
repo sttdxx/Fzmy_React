@@ -5,7 +5,7 @@ class Lawreg extends React.Component{
 	render(){
 		return (
 			<div>
-				<Headerbar index="法律人员注册" link='/login' prev={[{link:'/',icon:'chevron-left'}]} next={[{link:'/reg',title:'快速注册'}]} />
+				<Headerbar index="法律人员注册" link='/lawreg' prev={[{link:'/',icon:'chevron-left'}]} next={[{link:'/login',title:'登录'}]} />
 				<LawyerRegisterCPT />
 			</div>
 		);

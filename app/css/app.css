@@ -46,7 +46,7 @@ html,body{
 .am-slider-default .am-control-nav{
 	bottom:-2px;
 }
-#border_username,#border_psw ,#reg_phone,#reg_psw,#reg_username,#reg_email,#lawReg_username,#lawReg_psw,#lawReg_code{
+#search,#border_username,#border_psw ,#reg_phone,#reg_psw,#reg_username,#reg_email,#lawReg_username,#lawReg_psw,#lawReg_code{
 	padding:10px;
 	border:0;
 	border-bottom: 1px solid #ccc;
@@ -99,4 +99,6 @@ html,body{
 #data4,#data5{
 	background-color:rgba(213, 94, 20,0.8);
 }
-
+#searchButton{
+	font-size:1.8em;
+}

@@ -9,15 +9,11 @@ class LawyerRegisterCPT extends React.Component{
 		super(props);
 		this.state={
 			result:[],
-			lawPhone:'',
 			tips:'',
-			tip1:'',
 			buttonValue:'获取验证码',
 			useInput:true,
 			registerResult:false,
-			checkCodeResult:false,
-			validation1:'warning',
-			validation2:'warning'
+			checkCodeResult:false
 		}
 	}
 
@@ -27,24 +23,12 @@ class LawyerRegisterCPT extends React.Component{
 			let flag = this.regExpPhone(userPhone);
 			if(userPhone){
 				if(flag){
-				this.setState({
-					lawPhone:userPhone,
-					useInput:true,
-					tip1:'',
-					validation1:"success"
-				});
+					return true;
 				}else{
-				this.setState({
-					tip1:"电话号码格式错误！",
-					validation1:"error",
-					useInput:false
-				});
+					return false;
 				}
 			}else{
-				this.setState({
-					tip1:"电话号码不能为空！",
-					validation1:"error",
-					});
+				return false;
 				}
 	}
 
@@ -55,7 +39,7 @@ class LawyerRegisterCPT extends React.Component{
 	}
 
 	getCode(){
-		let phone = this.state.lawPhone;
+		let phone = this.state.phone;
 		let rand = parseInt(Math.random()*1000000+1);
 		let code = '%23code%23%3D'+rand;		
 		console.log(rand);
@@ -89,6 +73,8 @@ class LawyerRegisterCPT extends React.Component{
 				} 
 			});
 			process.push();
+		}else{
+			this.setState({buttonValue:"发送失败，请确实是否填写正确号码"});
 		}
 	}
 
@@ -112,10 +98,8 @@ class LawyerRegisterCPT extends React.Component{
 		console.log(getcode);
 		console.log(generateCode);
 		if(getcode==generateCode){
-			this.setState({validation2:"success"});
 			return true;
 		}else{
-			this.setState({validation2:"error"});
 			return false;
 		}		 
 	}
@@ -128,8 +112,8 @@ class LawyerRegisterCPT extends React.Component{
 		let phone = this.state.phone;
 		console.log(phone);
 		let that = this;
-
-		if(checkCodeResult&&psw&&phone){
+		let checkPhoneResult = this.getPhoneValue();
+		if(checkCodeResult&&psw&&checkPhoneResult){
 			let process = new Process({
 			"url":"http://www.myflfw.com/law/App/Lawyer/LawyerReg.action",
 			options:{
@@ -170,13 +154,19 @@ class LawyerRegisterCPT extends React.Component{
 			tips:"验证码错误！",
 			registerResult:false,
 			});	
+		}else if(!checkPhoneResult){
+			that.setState({
+			tips:"电话号码错误，请重试！",
+			registerResult:false,
+			});	
 		}else{
 			that.setState({
 			tips:"注册失败，请重试！",
 			registerResult:false,
-			});	
+			});
 		}
 	}
+
 	render(){
 		let _this = this;
 		var modal =  (function(){
@@ -185,15 +175,17 @@ class LawyerRegisterCPT extends React.Component{
            		   </Modal>
         }());
 		return(
+			<Container style={{padding:'20px'}}>
+			 <p className="app_title">法制绵阳</p>
 			<Form horizontal>
 			    <Input 
 				    placeholder="请输入电话号码"  
 				    ref="userPhone" 
-				    validation={this.state.validation1}
+				    id="lawReg_username"
 				    onBlur={this.getPhoneValue.bind(this)}
-				    hasFeedback
+				    icon="phone"
 			    />
-			    <small>{this.state.tip1}</small>
+				
 
 			    <Input 
 				    type="submit" 
@@ -207,28 +199,31 @@ class LawyerRegisterCPT extends React.Component{
 			    <Input  
 				    placeholder="请输入验证码"  
 				    ref="code" 
-					validation={this.state.validation2}
+					id="lawReg_code"
 				    onBlur = {this.checkCode.bind(this)}
-				    hasFeedback
+				    icon="check-circle"
 			    />
 
 			    <Input 
 				    type="password" 
 				    placeholder="请输入密码" 
-				    standalone 
 				    ref="psw"
+				    id="lawReg_psw"
+				    icon="lock"
 			    />
 			    
 		       <ModalTrigger modal={modal} open={this.state.isAction}>
-   							<Input 
-	   							type="submit" 
-	   							value="注册" 
+   							
+   							<Button 
 	   							amStyle="primary" 
-	   							block  
-	   							onClick={this.register.bind(this)} 
-   							/>
+	   							block 
+	   							onClick={this.register.bind(this)}>
+	   							注册
+   							</Button>
   						</ModalTrigger>
 	    	</Form>
+	    	
+	    	</Container>
 			);
 		
 	}
