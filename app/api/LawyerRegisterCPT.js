@@ -173,7 +173,7 @@ class LawyerRegisterCPT extends React.Component{
             return <Modal  type="alert"  title="提示">
            			{_this.state.tips}
            		   </Modal>
-        }());
+            }());
 		return(
 			<Container style={{padding:'20px'}}>
 			 <p className="app_title">法制绵阳</p>
@@ -223,8 +223,8 @@ class LawyerRegisterCPT extends React.Component{
   						</ModalTrigger>
 	    	</Form>
 	    	
-	    	</Container>
-			);
+	    </Container>
+		);
 		
 	}
 }

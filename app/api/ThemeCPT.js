@@ -18,7 +18,7 @@ class ThemeCPT extends React.Component{
 		let _this = this;
 		let theme = ThemeData.map(function(data,index){
 			return (
-				<Col  sm={6} key={data.link} data-aa={data.link} id={data.style}  onClick={_this.routerto.bind(_this)}><Icon className="iconsize" icon={data.icon} /><span>&nbsp;&nbsp;{data.title}</span></Col>
+				<Col  sm={6} key={index} data-aa={data.link} id={data.style}  onClick={_this.routerto.bind(_this)}><Icon className="iconsize" icon={data.icon} /><span>&nbsp;&nbsp;{data.title}</span></Col>
 				);
 		});
 		return(

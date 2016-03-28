@@ -72,15 +72,10 @@ class LoginCPT extends React.Component{
 		let that = this;
 		if(loginResult){
 			var router = that._reactInternalInstance._context.router;
-					router.replace("/api/register");
+					router.replace("/reg");
 		}else{
 
 		}
-	}
-
-	gotoRegister(){
-		var router = this._reactInternalInstance._context.router;
-					router.replace("/api/register");
 	}
 
 	render(){
