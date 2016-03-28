@@ -17,6 +17,7 @@ import Fwgj from './fwgj.js';
 import Kstw from './kstw.js';
 import Zjzx from './zjzx.js';
 import Zxfw from './zxfw.js';
+import Lawreg from './lawreg.js';
 class App extends React.Component{
 	render(){
 		return(
@@ -36,6 +37,7 @@ class App extends React.Component{
           <Route path="/kstw" component={Kstw} />
           <Route path="/zjzx" component={Zjzx} />
           <Route path="/zxfw" component={Zxfw} />
+          <Route path="/lawreg" component={Lawreg} />
   			</Router>
   		);
 	}
