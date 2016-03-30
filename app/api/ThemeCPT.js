@@ -8,8 +8,8 @@ class ThemeCPT extends React.Component{
 	}
 	
 	routerto(e){		
-		console.log(e.target.parentElement.dataset.aa);
-		let link = e.target.parentElement.dataset.aa;
+		console.log(e.target.parentElement.dataset.link);
+		let link = e.target.parentElement.dataset.link;
 		var router = this._reactInternalInstance._context.router;
 					router.replace(link);
 	}
@@ -18,7 +18,7 @@ class ThemeCPT extends React.Component{
 		let _this = this;
 		let theme = ThemeData.map(function(data,index){
 			return (
-				<Col  sm={6} key={index} data-aa={data.link} id={data.style}  onClick={_this.routerto.bind(_this)}><Icon className="iconsize" icon={data.icon} /><span>&nbsp;&nbsp;{data.title}</span></Col>
+				<Col  sm={6} key={index} data-link={data.link} id={data.style}  onClick={_this.routerto.bind(_this)}><Icon className="iconsize" icon={data.icon} /><span>&nbsp;&nbsp;{data.title}</span></Col>
 				);
 		});
 		return(

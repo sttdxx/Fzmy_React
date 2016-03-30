@@ -45,6 +45,7 @@ class LoginCPT extends React.Component{
 					if(that.state.result){
 						localStorage.setItem("userDetail", that.state.result);
 						localStorage.setItem("userName", that.state.result.name);
+						localStorage.setItem("userID", that.state.result.id);
 						var router = that._reactInternalInstance._context.router;
 						router.replace("/");
 					}else{
